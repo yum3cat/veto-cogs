@@ -8,13 +8,13 @@ from dataclasses_json import DataClassJsonMixin, config
 from redbot.core import bank, errors
 from redbot.core.utils.chat_formatting import humanize_number
 
-from simplecasino.base import BaseCasinoCog, BasePokerGame
-from simplecasino.card import CARD_VALUE_STR, Card, CardSuit, CardValue
-from simplecasino.utils import (HandType, PlayerState, PlayerType, PokerState, InsufficientFundsError, humanize_camel_case,
+from simplecasinoremix.base import BaseCasinoCog, BasePokerGame
+from simplecasinoremix.card import CARD_VALUE_STR, Card, CardSuit, CardValue
+from simplecasinoremix.utils import (HandType, PlayerState, PlayerType, PokerState, InsufficientFundsError, humanize_camel_case,
                                 DISCORD_RED, EMPTY_ELEMENT, POKER_MAX_PLAYERS, POKER_STAGE_NAMES)
-from simplecasino.views.poker_rematch_view import PokerRematchView
-from simplecasino.views.poker_view import PokerView
-from simplecasino.views.poker_waiting_view import PokerWaitingView
+from simplecasinoremix.views.poker_rematch_view import PokerRematchView
+from simplecasinoremix.views.poker_view import PokerView
+from simplecasinoremix.views.poker_waiting_view import PokerWaitingView
 
 log = logging.getLogger("red.crab-cogs.simplecasino")
 

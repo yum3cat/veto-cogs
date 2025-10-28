@@ -4,8 +4,8 @@
 import discord
 from redbot.core import bank
 
-from simplecasino.base import BasePokerGame
-from simplecasino.utils import PokerState
+from simplecasinoremix.base import BasePokerGame
+from simplecasinoremix.utils import PokerState
 
 
 class PokerWaitingView(discord.ui.View):

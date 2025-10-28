@@ -7,10 +7,10 @@ import discord
 from redbot.core import bank
 from redbot.core.utils.chat_formatting import humanize_number
 
-from simplecasino.base import BasePokerGame
-from simplecasino.utils import InsufficientFundsError
+from simplecasinoremix.base import BasePokerGame
+from simplecasinoremix.utils import InsufficientFundsError
 
-log = logging.getLogger("red.crab-cogs.simplecasino.poker")
+log = logging.getLogger("red.crab-cogs.simplecasinoremix.poker")
 
 MAX_OPTIONS = 25
 RAISE_BET_FACTOR = 1.21153  # 10x every 12th power

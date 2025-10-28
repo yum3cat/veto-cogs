@@ -6,11 +6,11 @@ from typing import List
 from redbot.core import bank, errors
 from redbot.core.utils.chat_formatting import humanize_number
 
-from simplecasino.base import BaseCasinoCog
-from simplecasino.card import Card, CardValue, CARD_EMOJI, make_deck
-from simplecasino.views.again_view import AgainView
+from simplecasinoremix.base import BaseCasinoCog
+from simplecasinoremix.card import Card, CardValue, CARD_EMOJI, make_deck
+from simplecasinoremix.views.again_view import AgainView
 
-log = logging.getLogger("red.crab-cogs.simplecasino.blackjack")
+log = logging.getLogger("red.crab-cogs.simplecasinoremix.blackjack")
 
 TWENTYONE = 21
 DEALER_STAND = 17
