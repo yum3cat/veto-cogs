@@ -5,7 +5,7 @@ import calendar
 import aiofiles
 from typing import List, Optional, Union
 from datetime import datetime
-from redbot.core import commands, app_commands, bank
+from redbot.core import commands, app_commands, bank, Config
 from redbot.core.bot import Red
 from redbot.core.data_manager import bundled_data_path
 from redbot.cogs.economy.economy import Economy
@@ -86,6 +86,12 @@ class SimpleCasino(BaseCasinoCog):
         if old_blackjack:
             self.bot.remove_command(old_blackjack.name)
             self.bot.add_command(old_blackjack)
+
+        Config.clear_all()
+        Config.clear_all_guilds()
+        Config.clear_all_channels()
+        Config.clear_all_custom()
+        Config.clear_all_globals()
 
     async def get_economy_cog(self, ctx: Union[discord.Interaction, commands.Context]) -> Optional[Economy]:
         cog: Optional[Economy] = self.bot.get_cog("Economy")  # type: ignore
