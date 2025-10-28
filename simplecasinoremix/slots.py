@@ -16,16 +16,16 @@ TRIPLE = 3
 DOUBLE = 2
 
 class SlotMachine(Enum):
-    cherries = "🍒"
-    bell = "🔔"
-    clover = "🍀"
-    apple = "🍎"
-    lemon = "🍋"
-    seven = "7️⃣"
-    watermelon = "🍉"
-    grapes = "🍇"
-    coin = "🪙"
-    heart = "🩷"
+    cherries = "<:glorp:1432743948459315315>"
+    bell = "<:blorp:1432743836928573440>"
+    clover = "<:lorp:1432743859292733470>"
+    apple = "<:prolG:1371594809105453217>"
+    lemon = "<:wlorp:1432743917304021152>"
+    seven = "<:prlorp:1432743883204202506>"
+    watermelon = "<:magentlorp:1432743871330390037>"
+    grapes = "<:purplorp:1432743894939861002>"
+    coin = "<:ylorp:1432743930260226068>"
+    heart = "<:rlorp:1432743906017284106>"
 
 PAYOUTS = {
     (SlotMachine.seven, SlotMachine.seven, SlotMachine.seven): JACKPOT_AMOUNT,
