@@ -6,10 +6,10 @@ from redbot.core import commands, app_commands, bank, Config
 from redbot.core.bot import Red
 from redbot.core.utils.chat_formatting import humanize_timedelta
 
-from minigames.base import Minigame, BaseMinigameCog
-from minigames.connect4 import ConnectFourGame
-from minigames.tictactoe import TicTacToeGame
-from minigames.views.replace_view import ReplaceView
+from minigamesremix.base import Minigame, BaseMinigameCog
+from minigamesremix.connect4 import ConnectFourGame
+from minigamesremix.tictactoe import TicTacToeGame
+from minigamesremix.views.replace_view import ReplaceView
 
 log = logging.getLogger("red.crab-cogs.minigames")
 
