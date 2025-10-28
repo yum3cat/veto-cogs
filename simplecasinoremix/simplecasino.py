@@ -103,6 +103,11 @@ class SimpleCasino(BaseCasinoCog):
         if type(bet) == str:
             if bet.strip().lower() == "all":
                 bet = await bank.get_balance(ctx.author)
+            else:
+                try:
+                    bet = int(bet.strip())
+                except:
+                    bet = 0
         await self.blackjack(ctx, bet)
 
     async def blackjack(self, ctx: Union[discord.Interaction, commands.Context], bet: int):
@@ -138,6 +143,11 @@ class SimpleCasino(BaseCasinoCog):
         if type(bet) == str:
             if bet.strip().lower() == "all":
                 bet = await bank.get_balance(ctx.author)
+            else:
+                try:
+                    bet = int(bet.strip())
+                except:
+                    bet = 0
         try:
             if not ctx.interaction:
                 self.concurrent_slots += 1
