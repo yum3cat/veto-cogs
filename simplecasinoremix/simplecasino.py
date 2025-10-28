@@ -98,7 +98,7 @@ class SimpleCasino(BaseCasinoCog):
     @commands.hybrid_command(name="blackjack", aliases=["bj"])
     @app_commands.describe(bet="How much currency to bet.")
     @commands.guild_only()
-    async def blackjack_cmd(self, ctx: commands.Context, bet: Union[int, str]):
+    async def blackjack_cmd(self, ctx: commands.Context, bet):
         """Play Blackjack against the bot. Get as close to 21 as possible!"""
         if type(bet) == str:
             if bet.strip().lower() == "all":
@@ -135,7 +135,7 @@ class SimpleCasino(BaseCasinoCog):
     @commands.hybrid_command(name="slot", aliases=["slots"])
     @commands.guild_only()
     @app_commands.describe(bet="How much currency to put in the slot machine.")
-    async def slot_cmd(self, ctx: commands.Context, bet:Union[int, str]):
+    async def slot_cmd(self, ctx: commands.Context, bet):
         """Play the slot machine."""
         if type(bet) == str:
             if bet.strip().lower() == "all":
