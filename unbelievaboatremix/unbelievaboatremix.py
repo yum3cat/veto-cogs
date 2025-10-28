@@ -309,11 +309,32 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         failrates = await conf.failrates()
         fail = random.randint(1, 100)
         if fail < failrates["rob"]:
-            return await self.fine(ctx, "rob")
+            await self.fine(ctx, "rob")
+
+            authorbalance = await bank.get_balance(ctx.author)
+
+            modifier = roll() / 4
+            reflect = random.randint(1, int(authorbalance * modifier) + 1)
+
+            try:
+                await bank.withdraw_credits(ctx.author, reflect)
+            except ValueError:
+                await bank.set_balance(ctx.author, 0)
+
+            await bank.deposit_credits(user, reflect)
+
+            embed = discord.Embed(
+                colour=discord.Color.red(),
+                description=f"\N{NEGATIVE SQUARED CROSS MARK} Critical failure! {user.display_name} got some of your money instead!"
+                f"\nYou pay {user.display_name} {humanize_number(reflect)} {await bank.get_currency_name(ctx.guild)}. Crime doesn't pay.",
+            )
+
+            embed.set_author(name=ctx.author, icon_url=ctx.author.display_avatar.url)
+            await ctx.send(embed=embed)
         
         userbalance = await bank.get_balance(user)
         
-        if userbalance <= 50:
+        if userbalance <= 100:
             finechance = random.randint(1, 10)
             if finechance <= 5:
                 return await self.fine(ctx, "rob")
