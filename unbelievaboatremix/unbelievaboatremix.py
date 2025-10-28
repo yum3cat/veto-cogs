@@ -243,8 +243,8 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
             return await ctx.send("This command can't be scheduled.")
         
         current_balance = await bank.get_balance(ctx.author)
-        if current_balance < 5000:
-            return await ctx.send(f"You're too BROKE to commit crimes!!! You need at least 5,000 {await bank.get_currency_name(ctx.guild)} to commit a crime.")
+        if current_balance < 2000:
+            return await ctx.send(f"You're too BROKE to commit crimes!!! You need at least 2,000 {await bank.get_currency_name(ctx.guild)} to commit a crime.")
         
         cdcheck = await self.cdcheck(ctx, "crimecd")
         if isinstance(cdcheck, tuple):
@@ -316,8 +316,8 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
             return await ctx.send("Robbing yourself doesn't make much sense.")
         
         current_balance = await bank.get_balance(ctx.author)
-        if current_balance < 5000:
-            return await ctx.send(f"You're too BROKE to rob someone!!! You need at least 5,000 {await bank.get_currency_name(ctx.guild)} to rob.")
+        if current_balance < 2500:
+            return await ctx.send(f"You're too BROKE to rob someone!!! You need at least 2,500 {await bank.get_currency_name(ctx.guild)} to rob.")
 
         cdcheck = await self.cdcheck(ctx, "robcd")
         if isinstance(cdcheck, tuple):
