@@ -330,7 +330,7 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
             )
 
             embed.set_author(name=ctx.author, icon_url=ctx.author.display_avatar.url)
-            await ctx.send(embed=embed)
+            return await ctx.send(embed=embed)
         
         userbalance = await bank.get_balance(user)
         
