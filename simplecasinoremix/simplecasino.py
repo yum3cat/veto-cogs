@@ -98,8 +98,13 @@ class SimpleCasino(BaseCasinoCog):
     @commands.hybrid_command(name="blackjack", aliases=["bj"])
     @app_commands.describe(bet="How much currency to bet.")
     @commands.guild_only()
-    async def blackjack_cmd(self, ctx: commands.Context, bet: int):
+    async def blackjack_cmd(self, ctx: commands.Context, bet: Union[int, str]):
         """Play Blackjack against the bot. Get as close to 21 as possible!"""
+        if type(bet) == str:
+            if bet.strip().lower() == "all":
+                bet = await bank.get_balance(ctx.author)
+            else:
+                return
         await self.blackjack(ctx, bet)
 
     async def blackjack(self, ctx: Union[discord.Interaction, commands.Context], bet: int):
@@ -130,8 +135,13 @@ class SimpleCasino(BaseCasinoCog):
     @commands.hybrid_command(name="slot", aliases=["slots"])
     @commands.guild_only()
     @app_commands.describe(bet="How much currency to put in the slot machine.")
-    async def slot_cmd(self, ctx: commands.Context, bet: int):
+    async def slot_cmd(self, ctx: commands.Context, bet:Union[int, str]):
         """Play the slot machine."""
+        if type(bet) == str:
+            if bet.strip().lower() == "all":
+                bet = await bank.get_balance(ctx.author)
+            else:
+                return
         try:
             if not ctx.interaction:
                 self.concurrent_slots += 1
