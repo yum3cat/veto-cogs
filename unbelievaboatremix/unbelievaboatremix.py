@@ -296,6 +296,8 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         except ValueError:
             await bank.set_balance(ctx.author, 0)
 
+        await bank.deposit_credits(user, randint)
+
         embed = discord.Embed(
             colour=discord.Color.red(),
             description=f"\N{NEGATIVE SQUARED CROSS MARK} **Critical failure!** You were caught by a police officer and fined {amount}... "
