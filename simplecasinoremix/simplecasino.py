@@ -87,12 +87,6 @@ class SimpleCasino(BaseCasinoCog):
             self.bot.remove_command(old_blackjack.name)
             self.bot.add_command(old_blackjack)
 
-        Config.clear_all()
-        Config.clear_all_guilds()
-        Config.clear_all_channels()
-        Config.clear_all_custom()
-        Config.clear_all_globals()
-
     async def get_economy_cog(self, ctx: Union[discord.Interaction, commands.Context]) -> Optional[Economy]:
         cog: Optional[Economy] = self.bot.get_cog("Economy")  # type: ignore
         if cog:
