@@ -285,6 +285,26 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
 
         await ctx.send(embed=embed)
 
+    async def fine_reflect(self, ctx, job, user: discord.Member):
+        conf = await self.configglobalcheck(ctx)
+        fines = await conf.fines()
+        randint = random.randint(fines["min"], fines["max"])
+        amount = str(humanize_number(randint)) + " " + await bank.get_currency_name(ctx.guild)
+
+        try:
+            await bank.withdraw_credits(ctx.author, randint)
+        except ValueError:
+            await bank.set_balance(ctx.author, 0)
+
+        embed = discord.Embed(
+            colour=discord.Color.red(),
+            description=f"\N{NEGATIVE SQUARED CROSS MARK} **Critical failure!** You were caught by a police officer and fined {amount}... "
+            f"but it turns out the officer was {user.display_name}!\n\n"
+            f"{user.display_name} gains {amount}.",
+        )
+        embed.set_author(name=ctx.author, icon_url=ctx.author.display_avatar.url)
+        await ctx.send(embed=embed)
+
     @commands.command()
     @commands.guild_only()
     @commands.bot_has_permissions(embed_links=True)
@@ -309,28 +329,11 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         failrates = await conf.failrates()
         fail = random.randint(1, 100)
         if fail < failrates["rob"]:
-            await self.fine(ctx, "rob")
-
-            authorbalance = await bank.get_balance(ctx.author)
-
-            modifier = roll() / 4
-            reflect = random.randint(1, int(authorbalance * modifier) + 1)
-
-            try:
-                await bank.withdraw_credits(ctx.author, reflect)
-            except ValueError:
-                await bank.set_balance(ctx.author, 0)
-
-            await bank.deposit_credits(user, reflect)
-
-            embed = discord.Embed(
-                colour=discord.Color.red(),
-                description=f"\N{NEGATIVE SQUARED CROSS MARK} Critical failure! {user.display_name} got some of your money instead!"
-                f"\nYou pay {user.display_name} {humanize_number(reflect)} {await bank.get_currency_name(ctx.guild)}. Crime doesn't pay.",
-            )
-
-            embed.set_author(name=ctx.author, icon_url=ctx.author.display_avatar.url)
-            return await ctx.send(embed=embed)
+            critical_fail = random.randint(1, 100)
+            if critical_fail < 51:
+                return await self.fine_reflect(ctx, "rob", user)
+            else:
+                return await self.fine(ctx, "rob")
         
         userbalance = await bank.get_balance(user)
         
