@@ -124,13 +124,14 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         conf = await self.configglobalcheck(ctx)
         fines = await conf.fines()
         randint = random.randint(fines["min"], fines["max"])
-        amount = str(humanize_number(randint)) + " " + await bank.get_currency_name(ctx.guild)
 
         try:
             await bank.withdraw_credits(ctx.author, randint)
         except ValueError:
             randint = await bank.get_balance(ctx.author)
             await bank.set_balance(ctx.author, 0)
+
+        amount = str(humanize_number(randint)) + " " + await bank.get_currency_name(ctx.guild)
 
         embed = discord.Embed(
             colour=discord.Color.red(),
@@ -290,7 +291,6 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         conf = await self.configglobalcheck(ctx)
         fines = await conf.fines()
         randint = random.randint(fines["min"], fines["max"])
-        amount = str(humanize_number(randint)) + " " + await bank.get_currency_name(ctx.guild)
 
         try:
             await bank.withdraw_credits(ctx.author, randint)
@@ -299,6 +299,8 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
             await bank.set_balance(ctx.author, 0)
 
         await bank.deposit_credits(user, randint)
+
+        amount = str(humanize_number(randint)) + " " + await bank.get_currency_name(ctx.guild)
 
         embed = discord.Embed(
             colour=discord.Color.red(),
