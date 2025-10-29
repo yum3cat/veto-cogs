@@ -129,6 +129,7 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         try:
             await bank.withdraw_credits(ctx.author, randint)
         except ValueError:
+            randint = await bank.get_balance(ctx.author)
             await bank.set_balance(ctx.author, 0)
 
         embed = discord.Embed(
@@ -242,9 +243,9 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         if ctx.assume_yes:
             return await ctx.send("This command can't be scheduled.")
         
-        current_balance = await bank.get_balance(ctx.author)
-        if current_balance < 2000:
-            return await ctx.send(f"You're too BROKE to commit crimes!!! You need at least 2,000 {await bank.get_currency_name(ctx.guild)} to commit a crime.")
+        # current_balance = await bank.get_balance(ctx.author)
+        # if current_balance < 2000:
+        #     return await ctx.send(f"You're too BROKE to commit crimes!!! You need at least 2,000 {await bank.get_currency_name(ctx.guild)} to commit a crime.")
         
         cdcheck = await self.cdcheck(ctx, "crimecd")
         if isinstance(cdcheck, tuple):
@@ -294,6 +295,7 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         try:
             await bank.withdraw_credits(ctx.author, randint)
         except ValueError:
+            randint = await bank.get_balance(ctx.author)
             await bank.set_balance(ctx.author, 0)
 
         await bank.deposit_credits(user, randint)
@@ -317,9 +319,9 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         if user == ctx.author:
             return await ctx.send("Robbing yourself doesn't make much sense.")
         
-        current_balance = await bank.get_balance(ctx.author)
-        if current_balance < 2500:
-            return await ctx.send(f"You're too BROKE to rob someone!!! You need at least 2,500 {await bank.get_currency_name(ctx.guild)} to rob.")
+        # current_balance = await bank.get_balance(ctx.author)
+        # if current_balance < 2500:
+        #     return await ctx.send(f"You're too BROKE to rob someone!!! You need at least 1,000 {await bank.get_currency_name(ctx.guild)} to rob.")
 
         cdcheck = await self.cdcheck(ctx, "robcd")
         if isinstance(cdcheck, tuple):
@@ -332,7 +334,7 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         fail = random.randint(1, 100)
         if fail < failrates["rob"]:
             critical_fail = random.randint(1, 100)
-            if critical_fail < 51:
+            if critical_fail < 80:
                 return await self.fine_reflect(ctx, "rob", user)
             else:
                 return await self.fine(ctx, "rob")
