@@ -357,9 +357,18 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         
         modifier = roll()
         stolen = random.randint(1, int(userbalance * modifier) + 1)
+
+        # Add rob limit
+        limit_str = ""
+        if stolen > 100000:
+            stolen = 10000
+            limit_str = f"\n\nYou could only stuff 100,000 {await bank.get_currency_name(ctx.guild)} in your pockets before you had to run away."
+            
+        description = f"You steal {user.name}'s wallet and find {humanize_number(stolen)} {await bank.get_currency_name(ctx.guild)} inside." + limit_str
+
         embed = discord.Embed(
             colour=discord.Color.green(),
-            description=f"You steal {user.name}'s wallet and find {humanize_number(stolen)} {await bank.get_currency_name(ctx.guild)} inside.",
+            description=description,
             timestamp=ctx.message.created_at,
         )
         embed.set_author(name=ctx.author, icon_url=ctx.author.display_avatar)
