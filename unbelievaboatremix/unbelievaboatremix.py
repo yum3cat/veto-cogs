@@ -244,9 +244,11 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         if ctx.assume_yes:
             return await ctx.send("This command can't be scheduled.")
         
-        # current_balance = await bank.get_balance(ctx.author)
-        # if current_balance < 2000:
-        #     return await ctx.send(f"You're too BROKE to commit crimes!!! You need at least 2,000 {await bank.get_currency_name(ctx.guild)} to commit a crime.")
+        fines = await conf.fines()
+        min_crime = fines["min"] // 10
+        current_balance = await bank.get_balance(ctx.author)
+        if current_balance < min_crime:
+            return await ctx.send(f"You're too BROKE to rob someone!!! You need at least {min_crime} {await bank.get_currency_name(ctx.guild)} to rob.")
         
         cdcheck = await self.cdcheck(ctx, "crimecd")
         if isinstance(cdcheck, tuple):
@@ -321,9 +323,11 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         if user == ctx.author:
             return await ctx.send("Robbing yourself doesn't make much sense.")
         
-        # current_balance = await bank.get_balance(ctx.author)
-        # if current_balance < 2500:
-        #     return await ctx.send(f"You're too BROKE to rob someone!!! You need at least 1,000 {await bank.get_currency_name(ctx.guild)} to rob.")
+        fines = await conf.fines()
+        min_crime = fines["min"] // 10
+        current_balance = await bank.get_balance(ctx.author)
+        if current_balance < min_crime:
+            return await ctx.send(f"You're too BROKE to rob someone!!! You need at least {min_crime} {await bank.get_currency_name(ctx.guild)} to rob.")
 
         cdcheck = await self.cdcheck(ctx, "robcd")
         if isinstance(cdcheck, tuple):
