@@ -244,6 +244,7 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         if ctx.assume_yes:
             return await ctx.send("This command can't be scheduled.")
         
+        conf = await self.configglobalcheck(ctx)
         fines = await conf.fines()
         min_crime = fines["min"] // 10
         current_balance = await bank.get_balance(ctx.author)
@@ -323,6 +324,7 @@ class Unbelievaboat(Roulette, SettingsMixin, commands.Cog, metaclass=CompositeMe
         if user == ctx.author:
             return await ctx.send("Robbing yourself doesn't make much sense.")
         
+        conf = await self.configglobalcheck(ctx)
         fines = await conf.fines()
         min_crime = fines["min"] // 10
         current_balance = await bank.get_balance(ctx.author)
