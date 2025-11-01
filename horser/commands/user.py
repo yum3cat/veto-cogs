@@ -142,7 +142,7 @@ class User(MixinMeta):
         return await ctx.send(embed=embed)
 
     @horser_group.command(name="buyHorse", aliases=["buyhorse", "bh"], description="Buy a horser.")
-    @ensure_db_connection
+    @ensure_db_connection()
     async def horser_buy_horse(self, ctx: commands.Context, color: str, *name):
         """Buy a horser."""
         
