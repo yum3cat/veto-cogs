@@ -110,7 +110,7 @@ class User(MixinMeta):
         emoji = "temp"
 
         embed = discord.Embed(
-            title=f"{user.display_name}'s {horse["name"]}",
+            title=f'{user.display_name}\'s {horse["name"]}',
             color=discord.color.dark_gold()
         )
 
