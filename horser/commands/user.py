@@ -46,7 +46,7 @@ class User(MixinMeta):
 
     @horser_group.command(name="stable", aliases=["s"], description="View your Horser stable.")
     @ensure_db_connection()
-    async def horser_stable(self, ctx: commands.Context, user = t.Optional[discord.User | discord.Member] = None):
+    async def horser_stable(self, ctx: commands.Context, user = t.Optional[discord.User | discord.Member]):
         """View your or another player's Horser stable."""
         if not user:
             user = ctx.author
@@ -79,6 +79,7 @@ class User(MixinMeta):
 
         for idx, horse in enumerate(player_horses, start=1):
             # emoji = await self.config.__getattr__(f'emoji_horse_{horse[1]}')()
+            emoji = "temp"
             embed.add_field(name=f"{idx}. {horse["name"]}", value=emoji, inline=False)
             embed.add_field(name="", value=f"Energy: {horse["energy"]}/{horse["max_energy"]}\n", inline=False)
 
@@ -106,6 +107,7 @@ class User(MixinMeta):
 
         currency_name = await bank.get_currency_name(ctx.guild)
         # emoji = await self.config.__getattr__(f'emoji_horse_{horse[1]}')()
+        emoji = "temp"
 
         embed = discord.Embed(
             title=f"{user.display_name}'s {horse["name"]}",
@@ -222,6 +224,7 @@ class User(MixinMeta):
         currency_name = await bank.get_currency_name(ctx.guild)
         leaderboard = ""
         # emoji = await self.config.__getattr__(f'emoji_horse_{horse_color}')()
+        emoji = "temp"
         for rank, horse in enumerate(top_horses, start=1):
             leaderboard += f"**{rank}.** {emoji} **{horse["name"]}** . . . **{horse["speed"]}** | **{horse["power"]}** | **{horse["stamina"]}** | **{horse["guts"]}** | **{horse["wit"]}** . . . {currency_name}**{humanize_number(horse["cash_earned"])}** won by ⮞<@{horse["player"].id}>⮜\n"
 
