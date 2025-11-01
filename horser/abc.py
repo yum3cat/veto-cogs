@@ -4,7 +4,6 @@ from discord.ext.commands.cog import CogMeta
 from piccolo.engine.postgres import PostgresEngine
 from redbot.core.bot import Red
 
-from .common import tracker
 from .db.utils import DBUtils
 
 
