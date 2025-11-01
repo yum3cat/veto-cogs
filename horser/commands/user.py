@@ -116,7 +116,7 @@ class User(MixinMeta):
 
         embed = discord.Embed(
             title=f'{user.display_name}\'s {horse["name"]}',
-            color=discord.color.dark_gold()
+            color=discord.Color.dark_gold()
         )
 
         embed.add_field(name=
