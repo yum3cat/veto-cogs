@@ -46,7 +46,7 @@ class User(MixinMeta):
 
     @horser_group.command(name="stable", aliases=["s"], description="View your Horser stable.")
     @ensure_db_connection()
-    async def horser_stable(self, ctx: commands.Context, user = t.Optional[discord.User | discord.Member]):
+    async def horser_stable(self, ctx: commands.Context, user: t.Optional[discord.User | discord.Member] = None):
         """View your or another player's Horser stable."""
         if not user:
             user = ctx.author
