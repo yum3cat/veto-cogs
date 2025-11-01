@@ -80,8 +80,8 @@ class User(MixinMeta):
         for idx, horse in enumerate(player_horses, start=1):
             # emoji = await self.config.__getattr__(f'emoji_horse_{horse[1]}')()
             emoji = "temp"
-            embed.add_field(name=f"{idx}. {horse["name"]}", value=emoji, inline=False)
-            embed.add_field(name="", value=f"Energy: {horse["energy"]}/{horse["max_energy"]}\n", inline=False)
+            embed.add_field(name=f'{idx}. {horse["name"]}', value=emoji, inline=False)
+            embed.add_field(name="", value=f'Energy: {horse["energy"]}/{horse["max_energy"]}\n', inline=False)
 
         embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
         
@@ -117,24 +117,24 @@ class User(MixinMeta):
         embed.add_field(name=
                         f"{emoji}",
                         value=
-                        f"Color: **{horse["color"].capitalize()}**\n"
-                        f"Energy: **{horse["energy"]}/{horse["max_energy"]}**\n",
+                        f'Color: **{horse["color"].capitalize()}**\n'
+                        f'Energy: **{horse["energy"]}/{horse["max_energy"]}**\n',
                         inline=False)
         
         embed.add_field(name="", value=
-                        f"Speed: **{horse["speed"]}**‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ \n"
-                        f"Power: **{horse["power"]}**\n"
-                        f"Stamina: **{horse["stamina"]}**\n"
-                        f"Guts: **{horse["guts"]}**\n"
-                        f"Wit: **{horse["wit"]}**\n",
+                        f'Speed: **{horse["speed"]}**‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ \n'
+                        f'Power: **{horse["power"]}**\n'
+                        f'Stamina: **{horse["stamina"]}**\n'
+                        f'Guts: **{horse["guts"]}**\n'
+                        f'Wit: **{horse["wit"]}**\n',
                         inline=True)
         
         embed.add_field(name="", value=
-                        f"Races run: **{horse["races_run"]}**‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ \n"
-                        f"Races won: **{horse["races_won"]}**\n"
-                        f"Win rate: **{(horse["races_won"] / horse["races_run"] * 100) if horse["races_run"] > 0 else 0:.2f}%**\n"
+                        f'Races run: **{horse["races_run"]}**‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ \n'
+                        f'Races won: **{horse["races_won"]}**\n'
+                        f'Win rate: **{(horse["races_won"] / horse["races_run"] * 100) if horse["races_run"] > 0 else 0:.2f}%**\n'
                         f"\n"
-                        f"Total cash earned: **{horse["cash_earned"]}** {currency_name}\n",
+                        f'Total cash earned: **{horse["cash_earned"]}** {currency_name}\n',
                         inline=True)
 
         embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
@@ -226,7 +226,7 @@ class User(MixinMeta):
         # emoji = await self.config.__getattr__(f'emoji_horse_{horse_color}')()
         emoji = "temp"
         for rank, horse in enumerate(top_horses, start=1):
-            leaderboard += f"**{rank}.** {emoji} **{horse["name"]}** . . . **{horse["speed"]}** | **{horse["power"]}** | **{horse["stamina"]}** | **{horse["guts"]}** | **{horse["wit"]}** . . . {currency_name}**{humanize_number(horse["cash_earned"])}** won by ⮞<@{horse["player"].id}>⮜\n"
+            leaderboard += f'**{rank}.** {emoji} **{horse["name"]}** . . . **{horse["speed"]}** | **{horse["power"]}** | **{horse["stamina"]}** | **{horse["guts"]}** | **{horse["wit"]}** . . . {currency_name}**{humanize_number(horse["cash_earned"])}** won by ⮞<@{horse["player"].id}>⮜\n'
 
         if len(leaderboard) == 0:
             leaderboard = "No horses found."
