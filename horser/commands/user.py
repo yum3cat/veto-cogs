@@ -90,11 +90,16 @@ class User(MixinMeta):
 
     @horser_group.command(name="horse", aliases=["h"], description="Manage your horser.")
     @ensure_db_connection()
-    async def horser_horse(self, ctx: commands.Context, horse_name: str):
+    async def horser_horse(self, ctx: commands.Context, *horse_name):
         """View your or another player's horse. Manage your horse using this menu."""
         user = ctx.author
 
         player = await self.db_utils.get_create_player(user)
+
+        if len(horse_name) < 1:
+            return await ctx.send_help()
+
+        horse_name = " ".join(n.capitalize() for n in horse_name)
 
         horse = await (
             Horse
